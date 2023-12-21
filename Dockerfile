@@ -1,14 +1,13 @@
 # Use Ubuntu as the base image
 FROM ubuntu:22.04
 
-# Install dependencies
+# Install any dependencies here
 RUN apt-get update && apt-get install -y \
-    [list_of_dependencies] \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy MPLAB X and XC Compiler installers into the image
-COPY MPLABXInstaller.tar /tmp/MPLABXInstaller.tar
-COPY XCCompilerInstaller.run /tmp/XCCompilerInstaller.run
+COPY MPLABX-v6.15-linux-Installer.tar /tmp/MPLABXInstaller.tar
+COPY xc8-v2.36-full-install-linux-x64-installer.run /tmp/XCCompilerInstaller.run
 
 # Install MPLAB X
 RUN cd /tmp && \
