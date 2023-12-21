@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy MPLAB X and XC Compiler installers into the image
-COPY MPLABX-v6.15-linux-Installer.tar /tmp/MPLABXInstaller.tar
+COPY MPLABX-v6.15-linux-installer.tar /tmp/MPLABXInstaller.tar
 COPY xc8-v2.36-full-install-linux-x64-installer.run /tmp/XCCompilerInstaller.run
 
 # Install MPLAB X
