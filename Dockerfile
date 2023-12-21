@@ -3,6 +3,7 @@ FROM ubuntu:22.04
 
 # Install any dependencies here
 RUN apt-get update && apt-get install -y \
+    sudo \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy MPLAB X and XC Compiler installers into the image
@@ -16,7 +17,7 @@ RUN cd /tmp && \
   tar -xf MPLABXInstaller.tar && \
   rm MPLABXInstaller.tar && \
   mv "MPLABX-v6.15-linux-installer.sh" mplabx && \
-  ./mplabx --nox11 -- --unattendedmodeui none --mode unattended --collectInfo 0 --installdir /opt/mplabx  && \
+  sudo ./mplabx --nox11 -- --unattendedmodeui none --mode unattended --collectInfo 0 --installdir /opt/mplabx  && \
   rm mplabx
 
 ARG COMPILER_NAME=xc8
