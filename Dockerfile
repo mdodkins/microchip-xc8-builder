@@ -9,12 +9,14 @@ RUN apt-get update && apt-get install -y \
 COPY MPLABX-v6.15-linux-installer.tar /tmp/MPLABXInstaller.tar
 COPY xc8-v2.36-full-install-linux-x64-installer.run /tmp/XCCompilerInstaller.run
 
+
 # Install MPLAB X
+# on ./mplabx line... ${MPLABX_ARG}
 RUN cd /tmp && \
   tar -xf MPLABXInstaller.tar && \
   rm MPLABXInstaller.tar && \
   mv "MPLABX-v6.15-linux-installer.sh" mplabx && \
-  sudo ./mplabx --nox11 -- --unattendedmodeui none --mode unattended --ipe ${INSTALL_IPE} --collectInfo 0 --installdir /opt/mplabx ${MPLABX_ARG} && \
+  ./mplabx --nox11 -- --unattendedmodeui none --mode unattended --collectInfo 0 --installdir /opt/mplabx  && \
   rm mplabx
 
 ARG COMPILER_NAME=xc8
