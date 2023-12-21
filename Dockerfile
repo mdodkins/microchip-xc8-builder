@@ -4,7 +4,7 @@ FROM ubuntu:22.04
 # Install any dependencies here
 RUN apt-get update && apt-get install -y \
     sudo \
-    libusb \
+    libusb-1.0-0 \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy MPLAB X and XC Compiler installers into the image
