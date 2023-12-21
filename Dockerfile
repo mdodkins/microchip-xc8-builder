@@ -11,10 +11,20 @@ COPY MPLABXInstaller.tar /tmp/MPLABXInstaller.tar
 COPY XCCompilerInstaller.run /tmp/XCCompilerInstaller.run
 
 # Install MPLAB X
-#RUN [commands_to_install_MPLABX]
+RUN cd /tmp && \
+  tar -xf MPLABXInstaller.tar && \
+  rm MPLABXInstaller.tar && \
+  mv "MPLABX-v${MPLABX_VERSION}-linux-installer.sh" mplabx && \
+  sudo ./mplabx --nox11 -- --unattendedmodeui none --mode unattended --ipe ${INSTALL_IPE} --collectInfo 0 --installdir /opt/mplabx ${MPLABX_ARG} && \
+  rm mplabx
 
-# Install XC Compiler
-#RUN [commands_to_install_XCCompiler]
+ARG COMPILER_NAME=xc8
+ARG COMPILER_VERSION=2.36
+
+# Download and install Compiler
+RUN chmod +x /tmp/XCCompilerInstaller.run && \
+  /tmp/XCCompilerInstaller.run --mode unattended --unattendedmodeui none --netservername localhost --LicenseType FreeMode --prefix "/opt/microchip/${COMPILER_NAME}/v${COMPILER_VERSION}" && \
+  rm /tmp/XCCompilerInstaller.run
 
 # Set up environment variables, paths, etc.
 #ENV [VARIABLE_NAME]=[VALUE]
