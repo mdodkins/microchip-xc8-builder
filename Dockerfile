@@ -26,7 +26,7 @@ ARG COMPILER_VERSION=2.36
 
 # Download and install Compiler
 RUN chmod +x /tmp/XCCompilerInstaller.run && \
-  /tmp/XCCompilerInstaller.run --mode unattended --unattendedmodeui none --netservername localhost --LicenseType FreeMode --prefix "/opt/microchip/${COMPILER_NAME}/v${COMPILER_VERSION}" && \
+  /tmp/XCCompilerInstaller.run --mode unattended --unattendedmodeui none --netservername localhost --LicenseType FreeMode --prefix "/opt/microchip/xc8/v2.36" && \
   rm /tmp/XCCompilerInstaller.run
 
 # Set up environment variables, paths, etc.
