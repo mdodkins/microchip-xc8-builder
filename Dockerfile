@@ -11,7 +11,6 @@ RUN apt-get update && apt-get install -y \
 COPY MPLABX-v6.15-linux-installer.tar /tmp/MPLABXInstaller.tar
 COPY xc8-v2.36-full-install-linux-x64-installer.run /tmp/XCCompilerInstaller.run
 
-
 # Install MPLAB X
 # on ./mplabx line... ${MPLABX_ARG}
 RUN cd /tmp && \
@@ -29,8 +28,7 @@ RUN chmod +x /tmp/XCCompilerInstaller.run && \
   /tmp/XCCompilerInstaller.run --mode unattended --unattendedmodeui none --netservername localhost --LicenseType FreeMode --prefix "/opt/microchip/xc8/v2.36" && \
   rm /tmp/XCCompilerInstaller.run
 
-# Set up environment variables, paths, etc.
-#ENV [VARIABLE_NAME]=[VALUE]
 
-# Set the default command for the container
-#CMD ["/path/to/your/build/script.sh"]
+COPY build.sh /build.sh
+RUN ["chmod", "+x", "/build.sh"]
+ENTRYPOINT [ "/build.sh" ]
